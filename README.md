@@ -2,157 +2,272 @@
 
 ## Autonomous Research & Competitor Tracking
 
-### Team Members
-- Atharva Deshpande
+**Live Demo:** https://agent-x-intelligence.vercel.app/  
+**GitHub:** https://github.com/onkargodage45/agentX-intelligence
+
+## Team Members
+
+- Atharv Deshpande — Team Leader
 - Mangesh Gofane
 - Shital Kale
 - Lavanya Varade
 
+---
+
 ## Problem Statement
 
-Organizations, startups, and research institutions operate in rapidly evolving environments where staying updated on research trends, patents, competitor strategies, industry news, and emerging technologies is critical. Manual monitoring is time-consuming, difficult to scale, and prone to missing important updates.
+Organizations, startups, and research institutions operate in highly competitive and rapidly evolving environments where staying updated on research trends, patent developments, competitor strategies, industry news, and emerging technologies is critical.
 
-AgentX Intelligence provides an autonomous AI-based research and competitor tracking system that gathers relevant information, analyzes evidence, coordinates specialized agents, manages context and memory, and produces concise, actionable intelligence.
+Manually monitoring scientific publications, patent databases, news platforms, and other information sources is time-consuming, inefficient, and prone to missing important updates.
+
+AgentX Intelligence automates this process using coordinated AI agents that gather, analyze, compare, and summarize relevant information into concise and actionable intelligence.
+
+---
 
 ## Project Description
 
-AgentX Intelligence is a multi-agent AI platform for autonomous research and competitor tracking.
+AgentX Intelligence is a multi-agent AI platform for autonomous research and competitor intelligence tracking.
 
-Core workflow:
+The system consists of:
+
+- **Orchestrator Agent**
+- **Research Agent**
+- **News / Competitor Agent**
+
+The Orchestrator understands the user's objective, dynamically delegates tasks, invokes external tools, collects evidence, evaluates results, manages context and memory, and synthesizes final intelligence.
+
+### Core Workflow
 
 ```text
-Understand → Plan / Reason → Collaborate → Use Tools
-→ Manage Context → Evaluate Evidence → Replan if Required
-→ Synthesize Intelligence → Recommend Actions
+Understand
+    ↓
+Plan / Reason
+    ↓
+Collaborate
+    ↓
+Use Tools
+    ↓
+Manage Context
+    ↓
+Evaluate Evidence
+    ↓
+Replan if Required
+    ↓
+Synthesize Intelligence
+    ↓
+Actionable Result
 ```
 
-## Technologies Used
+---
 
-| Technology | Purpose |
-|---|---|
-| React | Frontend |
-| TypeScript | Application development |
-| Vite | Build tooling |
-| Tailwind CSS | UI styling |
-| Supabase | Backend and database services |
-| OpenAlex API | Academic research |
-| Crossref API | Scholarly publication metadata |
-| Hacker News Firebase API | Technology and industry signals |
-| LocalStorage | Persistent client-side memory |
-| Vercel | Deployment |
-
-## Architecture
-
-AgentX uses a state/graph-based agent orchestration architecture.
-
-### Orchestrator Agent
-- Understands objectives
-- Creates dynamic plans
-- Decomposes tasks
-- Selects agents and tools
-- Performs conditional routing
-- Coordinates parallel execution
-- Evaluates evidence
-- Replans
-- Synthesizes final intelligence
-
-### Research Agent
-Handles academic research, publications, research trends, and emerging technology.
-
-**Tools:** OpenAlex, Crossref
-
-### News / Competitor Agent
-Handles industry developments, competitor activity, technology signals, and recent news.
-
-**Tool:** Hacker News Firebase API
+# Architecture
 
 ```text
                          USER
                            ↓
-                      ORCHESTRATOR
+                    ORCHESTRATOR
                            ↓
                     PLAN / REASON
                            ↓
-                ┌──────────┴──────────┐
-                ↓                     ↓
-         RESEARCH AGENT          NEWS AGENT
-                ↓                     ↓
-        OpenAlex / Crossref      Hacker News
-                └──────────┬──────────┘
+              ┌────────────┴────────────┐
+              ↓                         ↓
+       RESEARCH AGENT             NEWS AGENT
+              ↓                         ↓
+       OpenAlex / Crossref          Hacker News
+              └────────────┬────────────┘
                            ↓
-                     SHARED STATE
+                    SHARED STATE
                            ↓
                   EVIDENCE ANALYSIS
                            ↓
-                 SELF-EVALUATION
-                      /                          VERIFY      REPLAN
-                      \        /
-                       ↓      ↓
+                  SELF-EVALUATION
+                       /                           VERIFY    REPLAN
+                       \       /
+                        ↓     ↓
                        SYNTHESIS
                            ↓
                          RESULT
 ```
 
-## Features
+---
 
-### Agentic Reasoning
-ReAct-style investigation where the system selects high-level next actions, uses tools, observes results, evaluates evidence, and continues until the objective is sufficiently addressed.
+# Technologies Used
 
-### Dynamic Planning
-Investigation plans are created according to the query instead of blindly executing every workflow step.
+| Technology | Purpose |
+|---|---|
+| React | Frontend |
+| TypeScript | Application logic |
+| Vite | Development and build |
+| Tailwind CSS | UI styling |
+| Supabase | Backend / database |
+| OpenAlex API | Academic research |
+| Crossref API | Scholarly publication metadata |
+| Hacker News Firebase API | Industry/news signals |
+| LocalStorage | Persistent client-side memory |
+| Vercel | Deployment |
 
-### Multi-Agent Collaboration
-Specialized Research and News/Competitor Agents collaborate through the Orchestrator.
+---
 
-### External Tool Calling
-Uses OpenAlex, Crossref, and Hacker News dynamically.
+# Agents
 
-### Parallel Execution
-Independent research and industry investigations can execute concurrently.
+## 1. Orchestrator Agent
 
-### Shared State
-Agents share investigation context including findings, evidence, confidence, tool activity, and task progress.
+Responsible for:
 
-### Context & Memory
+- Understanding the user objective
+- Dynamic planning
+- Task decomposition
+- Agent selection
+- Conditional routing
+- Coordinating agents
+- Evidence evaluation
+- Replanning
+- Final synthesis
+
+## 2. Research Agent
+
+Responsible for:
+
+- Academic research
+- Scientific publications
+- Research trends
+- Emerging technologies
+
+### Tools
+
+- OpenAlex
+- Crossref
+
+## 3. News / Competitor Agent
+
+Responsible for:
+
+- Industry developments
+- Competitor activity
+- Technology signals
+- Recent news
+
+### Tool
+
+- Hacker News Firebase API
+
+---
+
+# Key Features
+
+## Agentic Reasoning
+
+AgentX follows a ReAct-style investigation loop:
+
+```text
+REASON
+   ↓
+DECIDE NEXT ACTION
+   ↓
+SELECT AGENT / TOOL
+   ↓
+EXECUTE
+   ↓
+OBSERVE
+   ↓
+EVALUATE
+   ↓
+CONTINUE / REPLAN / SYNTHESIZE
+```
+
+The UI displays high-level reasoning and decision events without exposing private chain-of-thought.
+
+## Dynamic Planning
+
+Investigation plans are created according to the user's query instead of blindly executing every workflow step.
+
+## Multi-Agent Collaboration
+
+Research and News agents work as specialized agents coordinated by the Orchestrator.
+
+## External Tool Calling
+
+AgentX integrates:
+
+- OpenAlex
+- Crossref
+- Hacker News
+
+## Parallel Execution
+
+Independent research and industry tasks can execute concurrently before evidence is combined.
+
+## Shared State
+
+Investigation state can contain query, topics, findings, evidence, confidence, tool activity, retries, resource usage, memory context, and checkpoints.
+
+## Context & Memory
+
 The application maintains short-term investigation context and persistent monitoring memory.
 
-### Autonomous Replanning
+## Autonomous Replanning
+
 If evidence is insufficient or conditions change, the Orchestrator can revise the investigation plan.
 
-### Failure Recovery & Tool Fallback
+## Failure Recovery & Tool Fallback
+
 Example:
 
 ```text
-OpenAlex → Failure → Retry → Crossref Fallback → Continue
+OpenAlex
+   ↓
+FAILURE
+   ↓
+Retry
+   ↓
+FAILURE
+   ↓
+Crossref Fallback
+   ↓
+SUCCESS
+   ↓
+Continue Investigation
 ```
 
-### Conflicting Evidence
-Evidence from multiple sources is compared and conflicts can trigger verification. Unsupported conclusions are avoided.
+The system should never fabricate external results when a tool fails.
 
-### Uncertainty-Aware Decisions
-Confidence levels help determine whether evidence is sufficient, whether verification is needed, or whether the task should be replanned.
+## Conflicting Evidence Resolution
 
-### Resource Awareness
-Tracks tool calls, retries, investigation steps, and replanning activity.
+When agents return different findings, evidence can be compared and verified. If evidence cannot be reconciled, uncertainty is preserved instead of forcing an unsupported conclusion.
 
-### Self-Evaluation
-Evaluates goal coverage, evidence quality, conflicts, and confidence before final synthesis.
+## Uncertainty-Aware Decisions
 
-### Hypothesis Verification
+```text
+HIGH confidence   → Synthesize
+MEDIUM confidence → Seek additional evidence
+LOW confidence    → Verify or replan
+```
+
+## Resource-Aware Execution
+
+The system tracks tool calls, agent executions, retries, investigation steps, and replanning activity.
+
+## Self-Evaluation
+
+Before final synthesis, AgentX evaluates goal coverage, evidence quality, missing evidence, conflicts, confidence, and the need for further investigation.
+
+## Hypothesis Verification
+
 Collected evidence can determine whether a hypothesis is supported, partially supported, or uncertain.
 
-### Loop / Deadlock Detection
+## Loop / Deadlock Detection
+
 Repeated tool calls, retries, or investigation states can be detected to prevent endless loops.
 
-### Adaptive Task Decomposition
-Complex queries can be divided into smaller investigation tasks based on the objective.
+## Adaptive Task Decomposition
 
-### Adversarial Testing
-Controlled scenarios cover tool failures, conflicting evidence, low confidence, resource constraints, and recovery behavior.
+Complex objectives are divided into smaller investigation tasks based on the actual objective.
 
-## Evaluation
+---
 
-AgentX can be evaluated across:
+# Evaluation
+
+AgentX can be evaluated using:
 
 1. Normal queries
 2. Ambiguous queries
@@ -163,115 +278,275 @@ AgentX can be evaluated across:
 7. Repeated runs
 8. Baseline comparison
 
-Metrics include:
+### Metrics
 
 - Accuracy
-- Task completion
+- Task completion rate
 - Groundedness
 - Hallucination rate
 - Evidence quality
-- Recovery success
+- Recovery success rate
 - Consistency
 - Latency
 - Tool/resource usage
 - Confidence calibration
 
-The system is designed to identify uncertainty and avoid unsupported conclusions.
+The system should identify uncertainty and avoid unsupported conclusions.
 
-## Context & Memory
+---
+
+# Advanced Tracing & Observability
+
+AgentX provides an observability model for tracking an investigation end-to-end.
+
+```text
+User Query
+   ↓
+Agent
+   ↓
+Decision
+   ↓
+Tool Call
+   ↓
+Tool Result
+   ↓
+Evaluation
+   ↓
+Final Result
+```
+
+Trace information can include:
+
+- Agent execution
+- High-level task/prompt input
+- Decisions
+- Routing
+- Tool calls
+- Tool success/failure
+- Errors
+- Latency
+- Retries
+- Fallbacks
+- Resource usage
+- Final task status
+
+### Controlled Failure Test
+
+```text
+Tool Failure
+     ↓
+Trace Captured
+     ↓
+Root Cause Identified
+     ↓
+Recovery / Fallback
+     ↓
+Retry
+     ↓
+Successful Completion
+```
+
+Before-vs-after evaluation can compare:
+
+- Task success rate
+- Execution time
+- Tool calls
+- Error count
+- Recovery rate
+
+> Only measured results should be reported as real metrics. Simulated failures or metrics must be clearly labeled.
+
+---
+
+# Adversarial Testing
+
+AgentX can be tested under controlled failure conditions.
+
+### Tool Failure
+
+```text
+Tool Failure
+→ Detect
+→ Diagnose
+→ Retry
+→ Fallback
+→ Recover
+```
+
+### Conflicting Evidence
+
+```text
+Research Evidence
+        +
+Industry Evidence
+        ↓
+Conflict Detection
+        ↓
+Verification
+        ↓
+Confidence Update
+```
+
+### Resource Constraint
+
+```text
+Limited Tool Budget
+        ↓
+Prioritize High-Value Evidence
+        ↓
+Continue Investigation
+```
+
+---
+
+# Context & Memory
 
 ### Short-Term Context
-Stores the current query, organization, topics, keywords, agents, tool results, evidence, confidence, and current step.
+
+Stores:
+
+```text
+Current Query
+Organization
+Topics
+Keywords
+Active Agents
+Tool Results
+Evidence
+Confidence
+Current Step
+```
 
 ### Long-Term Memory
-Can persist organization, competitors, topics, keywords, previous queries, and previous monitoring context.
 
-LocalStorage is used where appropriate for client-side persistent memory.
+Can store:
 
-## Database / Backend
+```text
+Organization
+Competitors
+Topics
+Keywords
+Previous Queries
+Monitoring Context
+```
 
-Supabase is used for configured backend and database functionality. Client-side state and LocalStorage are also used where appropriate for memory and UI persistence.
+Supabase provides configured backend/database persistence, while LocalStorage can be used for client-side memory.
 
-## Example Query
+---
+
+# Dashboard
+
+The dashboard provides:
+
+- Overview
+- Agents
+- Signals
+- Evidence
+- Intelligence
+- Agent Council
+- Agent Decision Timeline
+- Agent Communication
+- Tool Activity
+- Investigation Memory
+- Long-Term Memory
+- Evaluation
+- Observability / Traces
+
+---
+
+# Example Query
 
 ```text
 Compare recent AI agent research with current industry developments.
 ```
 
-Expected workflow:
+Expected flow:
 
 ```text
 User Query
- ↓
-Understand Objective
- ↓
-Create Investigation Plan
- ↓
-Research Agent
- ↓
-News Agent
- ↓
-Collect Evidence
- ↓
-Compare Evidence
- ↓
-Evaluate Confidence
- ↓
-Replan if Needed
- ↓
-Generate Actionable Intelligence
+    ↓
+Orchestrator
+    ↓
+Research Agent + News Agent
+    ↓
+OpenAlex / Crossref / Hacker News
+    ↓
+Evidence Collection
+    ↓
+Evidence Analysis
+    ↓
+Self-Evaluation
+    ↓
+Final Intelligence
 ```
 
-## Installation / Setup
+---
 
-### 1. Clone
+# Installation / Setup
+
+## 1. Clone Repository
 
 ```bash
 git clone https://github.com/onkargodage45/agentX-intelligence.git
 cd agentX-intelligence
 ```
 
-### 2. Install
+## 2. Install Dependencies
 
 ```bash
 npm install
 ```
 
-### 3. Configure Environment
+## 3. Configure Environment
 
-Create a `.env` file using the variables required by the project.
+Create a `.env` file with the required project configuration.
 
-Never commit private credentials, API keys, database passwords, or tokens.
+Example:
 
-### 4. Run
+```env
+VITE_SUPABASE_URL=your_supabase_url
+VITE_SUPABASE_ANON_KEY=your_supabase_anon_key
+```
+
+Never commit private credentials, API keys, passwords, or tokens.
+
+## 4. Run Development Server
 
 ```bash
 npm run dev
 ```
 
-### 5. Production Build
+## 5. Build for Production
 
 ```bash
 npm run build
 ```
 
-## How to Run
+## 6. Preview Production Build
 
-After `npm run dev`, open the local Vite URL shown in the terminal.
+```bash
+npm run preview
+```
+
+---
+
+# How to Run
+
+After:
+
+```bash
+npm run dev
+```
+
+open the local Vite URL shown in the terminal.
 
 Enter an intelligence query and click **Run Intelligence Scan**.
 
-The dashboard displays agent status, decision timeline, agent communication, tool activity, signals, evidence, intelligence, memory, and evaluation information.
+The dashboard displays agent investigation, tool usage, evidence, memory, evaluation, and final intelligence.
 
-## Live Demo
+---
 
-https://agent-x-intelligence.vercel.app/
-
-## GitHub Repository
-
-https://github.com/onkargodage45/agentX-intelligence
-
-## Project Structure
+# Project Structure
 
 ```text
 src/
@@ -292,6 +567,7 @@ supabase/
 └── migrations/
 
 public/
+
 .env.example
 package.json
 package-lock.json
@@ -299,59 +575,75 @@ vite.config.ts
 README.md
 ```
 
-## Screenshots / Demo
+---
 
-The live application demonstrates:
+# Live Demo
 
-- Agent Council
-- Agent Decision Timeline
-- Agent Communication
-- Tool Activity
-- Investigation Memory
-- Long-Term Memory
-- Research Signals
-- Industry Signals
-- Evidence Analysis
-- Final Intelligence
+**AgentX Intelligence:**  
+https://agent-x-intelligence.vercel.app/
 
-Live demo: https://agent-x-intelligence.vercel.app/
+# GitHub Repository
 
-## Hackathon Capability Mapping
+https://github.com/onkargodage45/agentX-intelligence
+
+---
+
+# Hackathon Capability Mapping
 
 | Capability | Implementation |
 |---|---|
-| Understand | Orchestrator analyzes the objective |
-| Plan / Reason | ReAct-style dynamic planning |
-| Collaborate | Orchestrator + specialized agents |
+| Understand | Orchestrator analyzes objective |
+| Plan / Reason | ReAct-style planning |
+| Collaborate | Orchestrator + Research + News agents |
 | Tool Calling | OpenAlex + Crossref + Hacker News |
 | Dynamic Planning | Runtime investigation planning |
 | Conditional Routing | State-dependent transitions |
 | Parallel Execution | Independent agent execution |
 | Shared State | Investigation state |
 | Checkpointing | Investigation checkpoints |
-| Replanning | Revised plans after evaluation |
+| Autonomous Replanning | Revised plans after evaluation |
 | Failure Recovery | Retry and fallback |
-| Conflict Resolution | Evidence comparison and verification |
+| Conflict Resolution | Evidence comparison |
 | Uncertainty | Confidence-aware decisions |
 | Resource Awareness | Tool/retry/step tracking |
-| Self-Evaluation | Evidence and goal evaluation |
+| Self-Evaluation | Goal/evidence evaluation |
 | Hypothesis Verification | Evidence-backed verification |
 | Memory | Current context + persistent memory |
-| Loop Detection | Repeated-state/retry detection |
+| Loop Detection | Repeated-state detection |
 | Adaptive Decomposition | Query-dependent task creation |
-| Adversarial Testing | Controlled failure scenarios |
+| Evaluation | Automated and human evaluation |
+| Observability | Agent/tool/error/latency tracing |
+| Root-Cause Diagnosis | Controlled failure analysis |
 
-## Team
+---
+
+# Security
+
+Never commit:
+
+- API secrets
+- Supabase service-role keys
+- Database passwords
+- GitHub tokens
+- Authentication credentials
+
+---
+
+# Team
 
 | Name | Role |
 |---|---|
-| Atharva Deshpande | Team Member |
+| Atharv Deshpande | Team Leader |
 | Mangesh Gofane | Team Member |
 | Shital Kale | Team Member |
 | Lavanya Varade | Team Member |
 
-## Conclusion
+---
 
-AgentX Intelligence transforms scattered research and competitor signals into structured, evidence-based, actionable intelligence.
+# Conclusion
 
-**Understand → Plan/Reason → Collaborate → Use Tools → Manage Context → Evaluate → Replan → Act**
+AgentX Intelligence combines:
+
+**Understand → Plan/Reason → Collaborate → Use Tools → Manage Context → Evaluate → Recover → Deliver Intelligence**
+
+to transform research, competitor, and industry signals into structured, evidence-based, actionable intelligence.
